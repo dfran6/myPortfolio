@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
+import CircularGallery from "./CircularGallery"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,6 +14,11 @@ interface Project {
   code: string
   image: string
   index: number
+}
+
+interface Image {
+  image: string
+  text: string
 }
 
 const projects: Project[] = [
@@ -50,6 +56,19 @@ const projects: Project[] = [
   },
 ]
 
+const images: Image[] = [
+  { image: "/d.jpg", text: "dFran6" },
+  { image: "/DF4.png", text: "Library" },
+  { image: "/h1.png", text: "h1" },
+  { image: "/h2.png", text: "h2" },
+  { image: "/h3.png", text: "h3" },
+  { image: "/h4.png", text: "h4" },
+  { image: "/h5.png", text: "h5" },
+  { image: "/h6.png", text: "h6" },
+  { image: "/h7.png", text: "h7" },
+  { image: "/h8.png", text: "h8" },
+];
+
 export default function Exhibits() {
 
 
@@ -64,7 +83,7 @@ export default function Exhibits() {
                 <img src={project.image} alt={project.title} />
               </div>
               <div className="p-8">
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-3 rounded-2xl py-2 ">{project.title}</h3>
                 <p className="text-gray-600 text-sm mb-6 leading-relaxed">{project.desc}</p>
                 <div className="flex gap-4">
                   <a href={project.demo} className="text-sm font-medium text-black hover:text-gray-600">
@@ -80,6 +99,11 @@ export default function Exhibits() {
               </div>
             </div>
           ))}
+        </div>
+        <h2 className="text-3xl font-bold m-20 mb-12 text-center">Photo Gallery</h2>
+        <div className="relative h-[60vh] md:h-[65vh] lg:h-[75vh]"
+        >
+          <CircularGallery items={images} textColor="#000" />
         </div>
       </div>
     </section>
