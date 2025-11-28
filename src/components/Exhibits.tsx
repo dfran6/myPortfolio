@@ -59,14 +59,14 @@ const projects: Project[] = [
 const images: Image[] = [
   { image: "/d.jpg", text: "dFran6" },
   { image: "/DF4.png", text: "Library" },
-  { image: "/h1.png", text: "h1" },
-  { image: "/h2.png", text: "h2" },
-  { image: "/h3.png", text: "h3" },
-  { image: "/h4.png", text: "h4" },
-  { image: "/h5.png", text: "h5" },
-  { image: "/h6.png", text: "h6" },
-  { image: "/h7.png", text: "h7" },
-  { image: "/h8.png", text: "h8" },
+  { image: "/h1.png", text: "Living room" },
+  { image: "/h2.png", text: "Bright Buger" },
+  { image: "/h3.png", text: "Courage's House" },
+  { image: "/h4.png", text: "Fountain block(FUO)" },
+  { image: "/h5.png", text: "Living room 2" },
+  { image: "/h6.png", text: "Regular show" },
+  { image: "/h7.png", text: "Back render" },
+  { image: "/h8.png", text: "Federal university Otuoke" },
 ];
 
 export default function Exhibits() {
@@ -85,9 +85,9 @@ export default function Exhibits() {
               <div className="p-8">
                 <h3 className="text-xl font-bold mb-3 rounded-2xl py-2 ">{project.title}</h3>
                 <p className="text-gray-600 text-sm mb-6 leading-relaxed">{project.desc}</p>
-                <div className="flex gap-4">
-                  <a href={project.demo} className="text-sm font-medium text-black hover:text-gray-600">
-                    View Demo →
+                <div className="flex gap-4 items-center ">
+                  <a href={project.demo} className="text-sm font-medium bg-gray-600 hover:bg-black transition-all  text-white rounded-sm p-2 ">
+                    View Demo
                   </a>
                   <a href={project.code} className="text-sm font-medium text-gray-400 hover:text-gray-600">
                     Code
