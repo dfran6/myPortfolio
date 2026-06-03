@@ -101,9 +101,8 @@ export default function Exhibits() {
           ))}
         </div>
         <h2 className="text-3xl font-bold m-20 mb-12 text-center">Photo Gallery</h2>
-        <div className="relative h-[60vh] md:h-[65vh] lg:h-[75vh]"
-        >
-          <CircularGallery items={images} textColor="#000" />
+        <div className="relative h-[50vh] sm:h-[60vh] md:h-[65vh] lg:h-[75vh]">
+          <CircularGallery items={images} textColor="#000" scrollSpeed={1.5} />
         </div>
       </div>
     </section>
