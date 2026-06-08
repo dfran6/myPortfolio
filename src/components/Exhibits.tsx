@@ -54,6 +54,22 @@ const projects: Project[] = [
     image: "tailorPic.png",
     index: 4,
   },
+    {
+    title: "Nacos Treasure Hunt game",
+    desc: "A web-based 3D treasure hunt game built with Three.js, where players explore a virtual environment to find hidden treasures while solving puzzles.",
+    demo: "https://nacostreasurehunt2.netlify.app/",
+    code: "/",
+    image: "thunt.png",
+    index: 5,
+  },
+{
+    title: "Dfran6 3d Portfolio",
+    desc: "A web-based 3D portfolio showcasing my work in computer graphics and web development.",
+    demo: "https://dfport4.netlify.app",
+    code: "/",
+    image: "dpf.png",
+    index: 6,
+  },
 ]
 
 const images: Image[] = [
