@@ -114,7 +114,7 @@ export default function Hero() {
                 </button>
 
                 <button className="portfolio-btn px-5 sm:px-8 py-2 sm:py-3 text-white text-xs sm:text-sm font-medium font-semibold hover:shadow-lg transition">
-                  <a href="https://dfport.netlify.app" className="portfolio-btn-content">
+                  <a href="https://dfport4.netlify.app" className="portfolio-btn-content">
                     View 3D Portfolio
                   </a>
                 </button>
