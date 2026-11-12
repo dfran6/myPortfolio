@@ -1,33 +1,16 @@
-"use client"
-
-import { useRef, useEffect } from "react"
-import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
-
 export default function About() {
-
-
-
   return (
-    <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <div className="border border-gray-300 p-6 sm:p-8 md:p-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">About the Artist</h2>
-          <div className="border-l-2 border-gray-300 pl-4 sm:pl-6">
-            <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed space-y-4">
-              Hi, I'm Chukwudi Francis.
-              <br />
-              <br />
-              I'm a Software Engineer from Nigeria focused on backend development, API architecture, and building reliable digital products. I work primarily with Python and FastAPI, creating scalable systems that power modern web applications.
-              <br />
-              <br />
-              I graduated with a First-Class degree in Computer Science and Informatics and have experience spanning software engineering, product development, usability testing, and digital design. My background in 3D technologies, including Blender and Three.js, gives me a unique perspective on creating engaging user experiences alongside robust backend systems.
-              <br />
-              <br />
-              Currently, my interests are centered around backend engineering, artificial intelligence, software architecture, and building technology that solves meaningful problems.
-            </p>
+    <section id="about" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[180px_1fr] gap-10">
+        <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold">01 / About</p>
+        <div>
+          <h2 className="dfx-display text-5xl sm:text-7xl md:text-8xl mb-12">
+            Engineer first.<br />Then <span className="text-[#ff5a1f]">worldbuilder.</span>
+          </h2>
+          <div className="dfx-mono text-sm sm:text-base leading-relaxed text-gray-300 space-y-6 max-w-2xl">
+            <p>I'm a Software Engineer from Nigeria focused on backend development, API architecture, and building reliable digital products. I work primarily with Python and FastAPI, creating scalable systems that power modern web applications.</p>
+            <p>I graduated with a First-Class degree in Computer Science and Informatics and have experience spanning software engineering, product development, usability testing, and digital design. My background in 3D technologies, including Blender and Three.js, gives me a unique perspective on creating engaging user experiences alongside robust backend systems.</p>
+            <p>Currently, my interests are centered around backend engineering, artificial intelligence, software architecture, and building technology that solves meaningful problems.</p>
           </div>
         </div>
       </div>

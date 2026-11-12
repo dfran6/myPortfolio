@@ -122,56 +122,39 @@ const images: Image[] = [
 
 export default function Exhibits() {
   const [filter, setFilter] = useState<"websites" | "virtual">("websites")
-
-  const filteredProjects = projects.filter((p) =>
-    filter === "websites" ? p.category === "website" : p.category === "virtual"
-  )
+  const list = projects.filter((p) => (filter === "websites" ? p.category === "website" : p.category === "virtual"))
+  const tab = (k: "websites" | "virtual") =>
+    `dfx-mono text-xs font-bold uppercase tracking-[.14em] px-4 py-2 border transition ${filter === k ? "bg-[#ff5a1f] border-[#ff5a1f] text-black" : "border-white/40 text-white hover:border-white"}`
 
   return (
-    <section id="exhibits" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="exhibits" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center">Exhibits</h2>
-        <div className="flex justify-center gap-4 mb-8">
-          <button
-            onClick={() => setFilter("websites")}
-            className={`px-4 py-2 rounded ${filter === "websites" ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-700"}`}
-          >
-            Websites
-          </button>
-          <button
-            onClick={() => setFilter("virtual")}
-            className={`px-4 py-2 rounded ${filter === "virtual" ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-700"}`}
-          >
-            Virtual Experiences
-          </button>
+        <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold mb-4">03 / Exhibits</p>
+        <h2 className="dfx-display text-5xl sm:text-7xl md:text-8xl mb-10">Exhibits</h2>
+        <div className="flex gap-3 mb-10">
+          <button onClick={() => setFilter("websites")} className={tab("websites")}>Websites</button>
+          <button onClick={() => setFilter("virtual")} className={tab("virtual")}>Virtual Experiences</button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <div key={project.title} className="exhibit-item border border-gray-300 overflow-hidden">
-              <div className="bg-gray-100 h-64 flex items-center justify-center text-gray-400">
-                <img src={project.image} alt={project.title} />
-              </div>
-              <div className="p-8">
-                <h3 className="text-xl font-bold mb-3 rounded-2xl py-2 ">{project.title}</h3>
+        <ul className="border-t border-white/20">
+          {list.map((project, i) => (
+            <li key={project.title} className="group grid md:grid-cols-[80px_1fr_320px] gap-6 md:gap-10 py-10 border-b border-white/20">
+              <span className="dfx-mono text-[#ff5a1f] text-sm font-bold">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 className="dfx-display text-2xl md:text-4xl mb-6">{project.title}</h3>
                 <ProjectDescription desc={project.desc} index={project.index} />
-                <div className="flex gap-4 items-center ">
-                  <a href={project.demo} className="text-sm font-medium bg-gray-600 hover:bg-black transition-all  text-white rounded-sm p-2 ">
-                    View Demo
-                  </a>
-                  <a href={project.code} className="text-sm font-medium text-gray-400 hover:text-gray-600">
-                    Code
-                  </a>
+                <div className="flex flex-wrap gap-8 items-center mt-8 dfx-mono text-xs font-bold uppercase tracking-[.14em]">
+                  <a href={project.demo} className="bg-[#ff5a1f] text-black px-4 py-2 hover:bg-white transition">View Demo</a>
+                  {project.code !== "/" && <a href={project.code} className="border-b border-white/60 hover:border-[#ff5a1f] hover:text-[#ff5a1f]">Code</a>}
                 </div>
               </div>
-              <div className="border-t border-gray-300 px-8 py-4 bg-gray-50 text-xs text-gray-500 text-center">
-                Exhibit #{project.index}
-              </div>
-            </div>
+              <img src={project.image} alt={project.title} className="w-full aspect-video object-cover grayscale group-hover:grayscale-0 transition duration-500" />
+            </li>
           ))}
-        </div>
-        <h2 className="text-3xl font-bold m-20 mb-12 text-center">Photo Gallery</h2>
+        </ul>
+
+        <h2 className="dfx-display text-4xl sm:text-6xl mt-24 mb-10">Photo Gallery</h2>
         <div className="relative h-[50vh] sm:h-[60vh] md:h-[65vh] lg:h-[75vh]">
-          <CircularGallery items={images} textColor="#000" scrollSpeed={1.5} />
+          <CircularGallery items={images} textColor="#fff" scrollSpeed={1.5} />
         </div>
       </div>
     </section>
@@ -181,20 +164,13 @@ export default function Exhibits() {
 function ProjectDescription({ desc, index }: { desc: string; index: number }) {
   const TRUNCATE = 120
   const [expanded, setExpanded] = useState<boolean>(false)
-
   const isLong = desc.length > TRUNCATE
   const shown = !isLong || expanded ? desc : desc.slice(0, TRUNCATE) + "..."
-
   return (
-    <div className="mb-4">
-      <p className="text-gray-600 text-sm leading-relaxed inline">{shown}</p>
+    <div id={`desc-${index}`}>
+      <p className="dfx-mono text-gray-400 text-sm leading-relaxed inline">{shown}</p>
       {isLong && (
-        <button
-          onClick={() => setExpanded((s) => !s)}
-          className="ml-1 text-sm text-indigo-600 hover:underline align-baseline"
-          aria-expanded={expanded}
-          aria-controls={`desc-${index}`}
-        >
+        <button onClick={() => setExpanded((s) => !s)} className="ml-2 dfx-mono text-xs text-[#ff5a1f] hover:underline" aria-expanded={expanded} aria-controls={`desc-${index}`}>
           {expanded ? "Read less" : "Read more"}
         </button>
       )}

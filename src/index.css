@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---- DFRAN6 hero: bolt reveal + inversion ---- */
+.dfx-track{height:460vh;position:relative;background:#fff}
+.dfx-stage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;background:#fff;isolation:isolate;font-family:"JetBrains Mono",ui-monospace,monospace}
+.dfx-zap{animation:dfx-zap .5s steps(1)}
+@keyframes dfx-zap{0%,100%{filter:none}12%{filter:invert(1)}24%{filter:none}40%{filter:invert(1)}52%{filter:none}}
+.dfx-portal{position:absolute;left:50%;top:50%;width:100vmin;height:100vmin;transform:translate(-50%,-50%);clip-path:polygon(62% 0,20% 58%,44% 58%,32% 100%,82% 36%,56% 36%,76% 0);will-change:transform;background:#000}
+.dfx-scene{position:absolute;inset:0;background:url(/h3.png) 30% center/cover;filter:grayscale(1) contrast(1.25)}
+.dfx-flood{position:absolute;inset:0;background:#000;opacity:0}
+.dfx-grid{position:absolute;inset:0;pointer-events:none;mix-blend-mode:difference;opacity:.18;background:linear-gradient(#fff 1px,transparent 1px) 0 0/100% 25%,linear-gradient(90deg,#fff 1px,transparent 1px) 0 0/25% 100%}
+.dfx-poster{position:absolute;inset:0;padding:calc(env(safe-area-inset-top,0px) + 28px) 22px calc(env(safe-area-inset-bottom,0px) + 22px);display:flex;flex-direction:column;justify-content:space-between;color:#fff;mix-blend-mode:difference}
+.dfx-meta{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.dfx-h1{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.84;letter-spacing:-.03em;font-size:clamp(3rem,min(14.5vw,17.5vh),13rem)}
+.dfx-sub{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.dfx-l2{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 22px;opacity:0;pointer-events:none;color:#fff}
+.dfx-h2{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.86;letter-spacing:-.03em;font-size:clamp(2.4rem,min(9vw,13vh),7.5rem)}
+.dfx-h2 em{font-style:normal;color:#ff5a1f}
+.dfx-note{margin-top:56px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#bbb}
+.dfx-actions{margin-top:56px;display:flex;flex-wrap:wrap;gap:24px 32px;align-items:center}
+.dfx-cta{color:#000;background:#ff5a1f;padding:14px 22px;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.dfx-link{color:#fff;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #fff}
+.dfx-fig{position:absolute;right:22px;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:clamp(140px,22vw,300px);clip-path:inset(100% 0 0 0)}
+.dfx-fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.2);transition:filter .5s}
+.dfx-fig:hover img,.dfx-fig:focus img{filter:none}
+.dfx-fig{cursor:pointer;outline:none}
+.dfx-ph{box-shadow:10px 10px 0 #ff5a1f;line-height:0}
+.dfx-fig figcaption{margin-top:20px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#bbb}
+@media(min-width:768px){.dfx-h1{font-size:min(11vw,26vh,14rem)}}
+.dfx-logo{position:absolute;left:22px;top:calc(env(safe-area-inset-top,0px) + 16px);width:56px;filter:invert(1)}
+@media(max-width:767px){.dfx-portal{width:150vw;height:150vw}
+.dfx-poster{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 64px)}
+.dfx-l2{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 250px)}
+.dfx-fig{top:calc(env(safe-area-inset-top,0px) + 28px);bottom:auto;width:112px}}
+@media(prefers-reduced-motion:reduce){.dfx-zap{animation:none}}
+
+.dfx-display{font-family:"Archivo Black",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.03em;line-height:.9;font-weight:400}
+.dfx-mono{font-family:"JetBrains Mono",ui-monospace,monospace}

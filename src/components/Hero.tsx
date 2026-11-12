@@ -1,134 +1,101 @@
 "use client"
 
-import { useRef, useEffect } from "react"
-import gsap from "gsap"
-import BlurText from "./BluredText"
-import ColorBends from "./ColorBends"
+import { useEffect, useRef } from "react"
+
+const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 
 export default function Hero() {
-  const imageRef = useRef<HTMLImageElement>(null)
+  const track = useRef<HTMLElement>(null)
+  const stage = useRef<HTMLDivElement>(null)
+  const portal = useRef<HTMLDivElement>(null)
+  const scene = useRef<HTMLDivElement>(null)
+  const flood = useRef<HTMLDivElement>(null)
+  const l2 = useRef<HTMLDivElement>(null)
+  const fig = useRef<HTMLElement>(null)
+  const hint = useRef<HTMLDivElement>(null)
+  const poster = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Image load animation
-    if (imageRef.current) {
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.9 },
-        { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }
-      )
+    const t = track.current, s = stage.current, po = portal.current, sc = scene.current
+    const pt = poster.current, fl = flood.current, l = l2.current, f = fig.current, h = hint.current
+    if (!t || !s || !po || !sc || !fl || !l || !f || !h || !pt) return
+    let zapped = false
+    let tick = false
+
+    const update = () => {
+      tick = false
+      const total = t.offsetHeight - window.innerHeight
+      const p = clamp(-t.getBoundingClientRect().top / total)
+      po.style.transform = `translate(-50%,-50%) scale(${1 + Math.pow(p, 2) * 12})`
+      t.style.background = p > 0.5 ? "#000" : "#fff"
+      fl.style.opacity = String(clamp((p - 0.5) / 0.25))
+      sc.style.filter = `grayscale(${1 - clamp((p - 0.45) / 0.3)}) contrast(1.25)`
+      l.style.opacity = String(clamp((p - 0.74) / 0.08))
+      l.style.pointerEvents = p > 0.78 ? "auto" : "none"
+      h.style.opacity = String(clamp(1 - p * 5))
+      pt.style.opacity = String(1 - clamp((p - 0.56) / 0.1))
+      f.style.clipPath = `inset(${(1 - clamp((p - 0.78) / 0.1)) * 100}% -20px -20px -20px)`
+      const past = p > 0.55
+      if (past !== zapped) {
+        zapped = past
+        s.classList.remove("dfx-zap")
+        void s.offsetWidth
+        s.classList.add("dfx-zap")
+      }
+    }
+    const onScroll = () => {
+      if (!tick) {
+        tick = true
+        requestAnimationFrame(update)
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", update)
+    update()
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", update)
     }
   }, [])
 
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id)
-    element?.scrollIntoView({ behavior: "smooth" })
+  const toExhibits = (e: React.MouseEvent) => {
+    e.preventDefault()
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
   }
 
   return (
-    <>
-      <style>{`
-        @keyframes button-glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
-          }
-          50% {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.5);
-          }
-        }
-
-        @keyframes subtle-float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
-        }
-
-        .portfolio-btn {
-          position: relative;
-          background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-          transition: all 0.3s ease;
-        }
-
-        .portfolio-btn:hover {
-          animation: button-glow 2s ease-in-out infinite;
-          transform: translateY(-2px);
-        }
-
-        .portfolio-btn-content {
-          position: relative;
-          z-index: 1;
-        }
-      `}</style>
-
-      <section
-        id="home"
-        className="pt-16 pb-10 px-4 sm:px-6 lg:px-8 bg-white min-h-screen flex items-center justify-center"
-      >
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-12 md:items-center gap-4">
-            {/* IMAGE - More responsive with mobile blur effect */}
-            <div className="w-full flex justify-center relative md:order-1">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-                <div className="aspect-square rounded-xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
-                  <img
-                    ref={imageRef}
-                    src="d.jpg"
-                    alt="picture of Franci Chukwudi Awulor"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Blur overlay at bottom on mobile */}
-                <div className="md:hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/50 to-transparent rounded-b-xl"></div>
-              </div>
-              {/* Mobile name under image */}
-              <div className="md:hidden absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-full px-4 text-center">
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900">
-                  Awulor Chukwudi Francis
-                </h1>
-              </div>
-            </div>
-
-            {/* TEXT */}
-            <div className="hero-item text-center md:text-left md:order-2 pt-20 md:pt-0">
-              <BlurText
-                text="Awulor Chukwudi Francis"
-                className="hidden md:block text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold rounded-2xl p-4 pl-0"
-              />
-
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-2">
-                3D Artist • Software Engineer • Digital Designer
-              </p>
-
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8">
-                Crafting interactive 3D experiences and modern web interfaces.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 text-center sm:text-left justify-center md:justify-start">
-                <button
-                  onClick={() => scrollTo("exhibits")}
-                  className="px-5 sm:px-8 py-2 sm:py-3 bg-black text-white text-xs sm:text-sm font-medium hover:bg-gray-800 transition hover:shadow-lg"
-                >
-                  View My Work
-                </button>
-
-                <button className="portfolio-btn px-5 sm:px-8 py-2 sm:py-3 text-white text-xs sm:text-sm font-medium font-semibold hover:shadow-lg transition">
-                  <a href="https://dfport4.netlify.app" className="portfolio-btn-content">
-                    View 3D Portfolio
-                  </a>
-                </button>
-
-                <button className="px-5 sm:px-8 py-2 sm:py-3 border border-black text-black text-xs sm:text-sm font-medium hover:bg-gray-100 transition">
-                  <a href="/Francis.ChukwudiCv.pdf" download>
-                    Download CV
-                  </a>
-                </button>
-              </div>
-            </div>
-          </div>
+    <section id="home" ref={track} className="dfx-track">
+      <div ref={stage} className="dfx-stage">
+        <div ref={portal} className="dfx-portal">
+          <div ref={scene} className="dfx-scene" />
         </div>
-      </section>
-    </>
+        <div ref={flood} className="dfx-flood" />
+        <div className="dfx-grid" />
+
+        <div ref={poster} className="dfx-poster">
+          <div className="dfx-meta"><span>DFRAN6 ⚡</span><span>Lagos, NG</span></div>
+          <div>
+            <h1 className="dfx-h1">I build{" "}<br className="md:hidden" />the{" "}<br className="hidden md:block" />part{" "}<br className="md:hidden" />you{" "}<br className="hidden md:block" />don’t{" "}<br className="md:hidden" />see.</h1>
+            <p className="dfx-sub">Awulor Chukwudi Francis — Backend engineer · FastAPI · PostgreSQL · Redis</p>
+          </div>
+          <div ref={hint} className="dfx-meta"><span>Something is leaking</span><span>Scroll ↓</span></div>
+        </div>
+
+        <div ref={l2} className="dfx-l2">
+          <img src="/dfNew.png" alt="DFRAN6" className="dfx-logo" />
+          <h2 className="dfx-h2">…and the part<br />you can <em>walk<br />through.</em></h2>
+          <p className="dfx-note">Blender · Three.js · React Three Fiber</p>
+          <div className="dfx-actions">
+            <a href="#about" onClick={toExhibits} className="dfx-cta">Enter the exhibits ↓</a>
+            <a href="https://dfport4.netlify.app" className="dfx-link">3D portfolio ↗</a>
+            <a href="/Francis.ChukwudiCv.pdf" download className="dfx-link">Download CV</a>
+          </div>
+          <figure ref={fig} className="dfx-fig" tabIndex={0}>
+            <div className="dfx-ph"><img src="/d.jpg" alt="Awulor Chukwudi Francis" /></div>
+            <figcaption>Francis — dfran6</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
   )
 }

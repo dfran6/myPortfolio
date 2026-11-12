@@ -5,12 +5,21 @@ import { useState, useEffect } from "react"
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
+      const hero = document.getElementById("home")
+      if (hero) {
+        const total = hero.offsetHeight - window.innerHeight
+        setVisible(-hero.getBoundingClientRect().top / total > 0.74)
+      } else {
+        setVisible(true)
+      }
     }
     window.addEventListener("scroll", handleScroll)
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -63,14 +72,14 @@ export default function Navigation() {
       `}</style>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all shadow-sm ${
-          scrolled ? "bg-white border-b border-gray-200" : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 mix-blend-difference text-white ${visible ? "opacity-100" : "opacity-0 -translate-y-full pointer-events-none"} ${
+          "bg-transparent"
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="text-xl font-bold flex items-center gap-2">
-              <img src="/dfNew.png" width={45} alt="Logo" />
+              <img src="/dfNew.png" width={45} alt="Logo" style={{ filter: "invert(1)" }} />
             </div>
 
             {/* Desktop Menu */}
@@ -115,9 +124,9 @@ export default function Navigation() {
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
-              <span className="line-1 hamburger-line w-6 h-0.5 bg-black block"></span>
-              <span className="line-2 hamburger-line w-6 h-0.5 bg-black block"></span>
-              <span className="line-3 hamburger-line w-6 h-0.5 bg-black block"></span>
+              <span className="line-1 hamburger-line w-6 h-0.5 bg-white block"></span>
+              <span className="line-2 hamburger-line w-6 h-0.5 bg-white block"></span>
+              <span className="line-3 hamburger-line w-6 h-0.5 bg-white block"></span>
             </button>
           </div>
         </div>
