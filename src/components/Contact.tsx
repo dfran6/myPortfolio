@@ -3,11 +3,11 @@ const label = "block dfx-mono text-xs font-bold tracking-[.14em] uppercase text-
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+    <section id="contact" className="bg-black text-white px-5 sm:px-8 py-16 min-h-[100svh] flex flex-col justify-center border-t border-white/20">
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
           <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold mb-4">04 / Contact</p>
-          <h2 className="dfx-display text-5xl sm:text-7xl mb-8">Get in <span className="text-[#ff5a1f]">touch.</span></h2>
+          <h2 className="dfx-display dfx-title mb-8">Get in <span className="text-[#ff5a1f]">touch.</span></h2>
           <p className="dfx-mono text-sm text-gray-300 mb-6">awulorfrancis@gmail.com</p>
           <div className="flex flex-wrap gap-6 dfx-mono text-xs font-bold uppercase tracking-[.14em]">
             <a href="https://www.linkedin.com/in/francis-chukwudi-awulor-b29424255" className="border-b border-white/60 hover:text-[#ff5a1f] hover:border-[#ff5a1f]">LinkedIn</a>

@@ -1,10 +1,10 @@
 export default function About() {
   return (
-    <section id="about" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-[180px_1fr] gap-10">
+    <section id="about" className="bg-black text-white px-5 sm:px-8 py-16 min-h-[100svh] flex flex-col justify-center border-t border-white/20">
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10">
         <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold">01 / About</p>
         <div>
-          <h2 className="dfx-display text-5xl sm:text-7xl md:text-8xl mb-12">
+          <h2 className="dfx-display dfx-title mb-12">
             Engineer first.<br />Then <span className="text-[#ff5a1f]">worldbuilder.</span>
           </h2>
           <div className="dfx-mono text-sm sm:text-base leading-relaxed text-gray-300 space-y-6 max-w-2xl">

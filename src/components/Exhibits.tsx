@@ -127,17 +127,17 @@ export default function Exhibits() {
     `dfx-mono text-xs font-bold uppercase tracking-[.14em] px-4 py-2 border transition ${filter === k ? "bg-[#ff5a1f] border-[#ff5a1f] text-black" : "border-white/40 text-white hover:border-white"}`
 
   return (
-    <section id="exhibits" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="exhibits" className="bg-black text-white px-5 sm:px-8 py-16 min-h-[100svh] flex flex-col justify-center border-t border-white/20">
+      <div className="w-full max-w-6xl mx-auto">
         <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold mb-4">03 / Exhibits</p>
-        <h2 className="dfx-display text-5xl sm:text-7xl md:text-8xl mb-10">Exhibits</h2>
+        <h2 className="dfx-display dfx-title mb-10">Exhibits</h2>
         <div className="flex gap-3 mb-10">
           <button onClick={() => setFilter("websites")} className={tab("websites")}>Websites</button>
           <button onClick={() => setFilter("virtual")} className={tab("virtual")}>Virtual Experiences</button>
         </div>
         <ul className="border-t border-white/20">
           {list.map((project, i) => (
-            <li key={project.title} className="group grid md:grid-cols-[80px_1fr_320px] gap-6 md:gap-10 py-10 border-b border-white/20">
+            <li key={project.title} className="group grid grid-cols-1 md:grid-cols-[80px_1fr_320px] gap-6 md:gap-10 py-10 border-b border-white/20">
               <span className="dfx-mono text-[#ff5a1f] text-sm font-bold">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="dfx-display text-2xl md:text-4xl mb-6">{project.title}</h3>
@@ -152,7 +152,7 @@ export default function Exhibits() {
           ))}
         </ul>
 
-        <h2 className="dfx-display text-4xl sm:text-6xl mt-24 mb-10">Photo Gallery</h2>
+        <h2 className="dfx-display dfx-title mt-24 mb-10">Photo Gallery</h2>
         <div className="relative h-[50vh] sm:h-[60vh] md:h-[65vh] lg:h-[75vh]">
           <CircularGallery items={images} textColor="#fff" scrollSpeed={1.5} />
         </div>

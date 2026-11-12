@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html{overflow-x:hidden}
+body{overflow-x:clip}
+.dfx-title{font-family:"Archivo Black",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;font-weight:400;font-size:clamp(1.9rem,8.2vw,5.5rem);overflow-wrap:break-word}
+
 /* ---- DFRAN6 hero: bolt reveal + inversion ---- */
 .dfx-track{height:460vh;position:relative;background:#fff}
-.dfx-stage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;background:#fff;isolation:isolate;font-family:"JetBrains Mono",ui-monospace,monospace}
+.dfx-stage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;contain:paint;background:#fff;isolation:isolate;font-family:"JetBrains Mono",ui-monospace,monospace}
 .dfx-zap{animation:dfx-zap .5s steps(1)}
 @keyframes dfx-zap{0%,100%{filter:none}12%{filter:invert(1)}24%{filter:none}40%{filter:invert(1)}52%{filter:none}}
 .dfx-portal{position:absolute;left:50%;top:50%;width:100vmin;height:100vmin;transform:translate(-50%,-50%);clip-path:polygon(62% 0,20% 58%,44% 58%,32% 100%,82% 36%,56% 36%,76% 0);will-change:transform;background:#000}
@@ -22,18 +26,26 @@
 .dfx-actions{margin-top:56px;display:flex;flex-wrap:wrap;gap:24px 32px;align-items:center}
 .dfx-cta{color:#000;background:#ff5a1f;padding:14px 22px;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
 .dfx-link{color:#fff;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #fff}
-.dfx-fig{position:absolute;right:22px;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:clamp(140px,22vw,300px);clip-path:inset(100% 0 0 0)}
-.dfx-fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.2);transition:filter .5s}
+.dfx-fig{position:absolute;right:22px;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:clamp(140px,22vw,300px);clip-path:inset(100% 0 0 0);transition:transform .45s ease, width .45s ease, right .45s ease, bottom .45s ease, clip-path .45s ease, opacity .4s ease;cursor:pointer;outline:none}
+.dfx-fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.2);transition:filter .5s, transform .45s ease}
 .dfx-fig:hover img,.dfx-fig:focus img{filter:none}
-.dfx-fig{cursor:pointer;outline:none}
-.dfx-ph{box-shadow:10px 10px 0 #ff5a1f;line-height:0}
+.dfx-ph{box-shadow:10px 10px 0 #ff5a1f;line-height:0;overflow:hidden;transition:box-shadow .35s ease}
 .dfx-fig figcaption{margin-top:20px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#bbb}
 @media(min-width:768px){.dfx-h1{font-size:min(11vw,26vh,14rem)}}
 .dfx-logo{position:absolute;left:22px;top:calc(env(safe-area-inset-top,0px) + 16px);width:56px;filter:invert(1)}
 @media(max-width:767px){.dfx-portal{width:150vw;height:150vw}
 .dfx-poster{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 64px)}
-.dfx-l2{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 250px)}
-.dfx-fig{top:calc(env(safe-area-inset-top,0px) + 28px);bottom:auto;width:112px}}
+.dfx-l2{padding:32px 16px 22px;transform:translateY(-28px)}
+.dfx-h2{line-height:.82;font-size:clamp(2.4rem,9.2vw,4.8rem)}
+.dfx-note{margin-top:18px}
+.dfx-actions{margin-top:18px;gap:16px 18px}
+.dfx-logo{top:calc(env(safe-area-inset-top,0px) + 42px);left:16px;width:52px}
+.dfx-fig{right:12px;bottom:12px;width:86px;clip-path:inset(0 0 0 0);opacity:1;z-index:4;transition:transform .45s ease, width .45s ease, right .45s ease, bottom .45s ease, clip-path .45s ease, opacity .4s ease}
+.dfx-fig.is-peeking{transform:translateY(18px);width:82px;right:12px;bottom:12px;clip-path:inset(12% 0 0 0)}
+.dfx-fig.is-open{transform:translateY(0);width:150px;right:18px;bottom:18px;clip-path:inset(0 0 0 0)}
+.dfx-fig.is-open .dfx-ph,.dfx-fig.is-peeking .dfx-ph{box-shadow:8px 8px 0 #ff5a1f}
+.dfx-fig figcaption{display:none}
+}
 @media(prefers-reduced-motion:reduce){.dfx-zap{animation:none}}
 
 .dfx-display{font-family:"Archivo Black",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.03em;line-height:.9;font-weight:400}

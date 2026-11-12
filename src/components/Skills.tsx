@@ -23,13 +23,13 @@ const groups: { label: string; items: Skill[] }[] = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="bg-black text-white px-5 sm:px-8 py-24 border-t border-white/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="bg-black text-white px-5 sm:px-8 py-16 min-h-[100svh] flex flex-col justify-center border-t border-white/20">
+      <div className="w-full max-w-6xl mx-auto">
         <p className="dfx-mono text-xs tracking-[.14em] uppercase text-[#ff5a1f] font-bold mb-4">02 / Tools</p>
-        <h2 className="dfx-display text-5xl sm:text-7xl md:text-8xl mb-12">Tools &amp; Skills</h2>
+        <h2 className="dfx-display dfx-title mb-12">Tools &amp; Skills</h2>
         <div className="border-t border-white/20">
           {groups.map((g) => (
-            <div key={g.label} className="grid md:grid-cols-[180px_1fr] gap-4 py-6 border-b border-white/20">
+            <div key={g.label} className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4 py-6 border-b border-white/20">
               <p className="dfx-mono text-xs tracking-[.14em] uppercase text-gray-500 font-bold pt-2">{g.label}</p>
               <div className="flex flex-wrap gap-3">
                 {g.items.map((s) => (

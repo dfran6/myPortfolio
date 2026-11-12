@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 
@@ -14,6 +14,7 @@ export default function Hero() {
   const fig = useRef<HTMLElement>(null)
   const hint = useRef<HTMLDivElement>(null)
   const poster = useRef<HTMLDivElement>(null)
+  const [portraitOpen, setPortraitOpen] = useState(false)
 
   useEffect(() => {
     const t = track.current, s = stage.current, po = portal.current, sc = scene.current
@@ -90,7 +91,20 @@ export default function Hero() {
             <a href="https://dfport4.netlify.app" className="dfx-link">3D portfolio ↗</a>
             <a href="/Francis.ChukwudiCv.pdf" download className="dfx-link">Download CV</a>
           </div>
-          <figure ref={fig} className="dfx-fig" tabIndex={0}>
+          <figure
+            ref={fig}
+            className={`dfx-fig ${portraitOpen ? "is-open" : "is-peeking"}`}
+            tabIndex={0}
+            onClick={() => setPortraitOpen((value) => !value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault()
+                setPortraitOpen((value) => !value)
+              }
+            }}
+            aria-expanded={portraitOpen}
+            aria-label={portraitOpen ? "Hide portrait" : "Open portrait"}
+          >
             <div className="dfx-ph"><img src="/d.jpg" alt="Awulor Chukwudi Francis" /></div>
             <figcaption>Francis — dfran6</figcaption>
           </figure>
