@@ -117,7 +117,7 @@ const projects: Project[] = [
  {
     title: "LUCHE - Hair and Beauty Storefront",
     desc: "LUCHE is a hair and beauty storefront with a salon services booking experience. Customers can browse products and services, add products to a cart, submit an order or appointment request, and continue coordinating with the business through WhatsApp. The site also includes an administration area for managing the catalog, inventory, orders, and appointments.",
-    demo: "https://luche-eight.vercel.app/",
+    demo: "https://luchehair.com",
     code: "/",
     image: "/luche.png",
     index: 11,
