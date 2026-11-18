@@ -54,7 +54,7 @@ const projects: Project[] = [
   {
     title: "Clinical Encounter Intake Platform - CEIP",
     desc: "CEIP is a React web interface for exploring the CEIP clinical data workflow. It provides a project overview and role-aware workspace for managing patients, encounters, notes, extraction results, analytics, audit logs, and clinic administration. It connects to the separately hosted CEIP backend. CEIP explores how a clinic-scoped backend can ingest patient encounters, turn note text into structured candidate data, and make access traceable. It combines a FastAPI API with a React demo interface, PostgreSQL persistence, tenant-aware authorization, audit logging, and a small explainable extraction pipeline.",
-    demo: "https://ceip.vercel.app/",
+    demo: "https://ciep-flax.vercel.app/",
     code: "https://github.com/dfran6/Clinical-Encounter-Intake-Platform-CEIP---Frontend",
     image: "ciep.png",
     index: 4,
